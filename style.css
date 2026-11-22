@@ -1,0 +1,229 @@
+/* ============================================================
+   1. VARIÁVEIS DE COR E MEDIDAS
+   Para mudar o visual do site inteiro, altere só estes valores.
+============================================================ */
+:root {
+  --fundo-1: #0d0614;            /* fundo principal (preto arroxeado) */
+  --fundo-2: #12091c;            /* fundo secundário (degradê e cards) */
+  --roxo: #9146FF;               /* roxo Twitch: botões, bordas, brilho */
+  --lilas: #c084fc;              /* lilás claro: detalhes */
+  --texto: #f5f1fb;              /* texto principal */
+  --texto-suave: #b9aecb;        /* texto secundário */
+  --vidro: rgba(145, 70, 255, 0.07);   /* fundo "vidro" dos cards */
+  --borda: rgba(192, 132, 252, 0.22);  /* borda sutil dos cards */
+  --brilho: 0 0 22px rgba(145, 70, 255, 0.55); /* brilho neon do hover */
+  --raio: 16px;                  /* arredondamento dos cards */
+}
+
+/* ============================================================
+   2. RESET E BASE
+============================================================ */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  color: var(--texto);
+  line-height: 1.55;
+  min-height: 100vh;
+  /* Degradê de fundo + um halo roxo no topo */
+  background:
+    radial-gradient(ellipse at 50% -10%, rgba(145, 70, 255, 0.28), transparent 55%),
+    linear-gradient(180deg, var(--fundo-1), var(--fundo-2));
+  background-attachment: fixed;
+}
+
+/* Coluna central: estreita no celular, confortável no PC */
+.container {
+  width: 100%;
+  max-width: 420px;              /* mobile: mais estreito */
+  margin: 0 auto;
+  padding: 28px 14px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+
+/* Títulos usam a fonte "gamer" */
+h1, h2, .cta { font-family: 'Chakra Petch', sans-serif; }
+
+/* Foco visível para quem navega pelo teclado */
+a:focus-visible, button:focus-visible { outline: 2px solid var(--lilas); outline-offset: 3px; }
+
+/* ============================================================
+   3. CARD (estilo vidro) – usado em Destaque, Setup e Agenda
+============================================================ */
+.card {
+  background: var(--vidro);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  padding: 14px;
+  backdrop-filter: blur(10px);           /* desfoque = efeito glassmorphism */
+  -webkit-backdrop-filter: blur(10px);
+}
+.card h2 { font-size: 1.05rem; margin-bottom: 12px; color: var(--lilas); }
+
+/* ============================================================
+   4. PERFIL
+============================================================ */
+.perfil { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+
+/* Avatar circular com borda e brilho roxo */
+.avatar {
+  width: 128px; height: 128px;
+  border-radius: 50%;
+  object-fit: cover;                     /* não deforma a foto */
+  border: 3px solid var(--roxo);
+  box-shadow: 0 0 0 5px rgba(145, 70, 255, 0.18), var(--brilho);
+  background: var(--fundo-2);
+}
+.perfil h1 { font-size: 2rem; letter-spacing: 0.5px; }
+.bio { color: var(--texto-suave); max-width: 46ch; }
+
+/* Badge "Live na Twitch" */
+.badge-live {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 0.85rem; font-weight: 700;
+  color: var(--lilas);
+  border: 1px solid var(--roxo);
+  background: rgba(145, 70, 255, 0.14);
+}
+/* Pontinho que pulsa (única animação automática da página) */
+.ponto {
+  width: 9px; height: 9px; border-radius: 50%;
+  background: #ff4d6d;
+  animation: pulsar 1.6s ease-in-out infinite;
+}
+@keyframes pulsar {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 77, 109, 0.7); }
+  50%      { box-shadow: 0 0 0 7px rgba(255, 77, 109, 0); }
+}
+
+/* ============================================================
+   5. DESTAQUE: BOTÃO CTA + PLAYER
+============================================================ */
+.destaque { display: flex; flex-direction: column; gap: 16px; }
+
+/* Botão principal roxo */
+.cta {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 16px;
+  border-radius: 12px;
+  background: var(--roxo);
+  color: #fff; text-decoration: none;
+  font-size: 1.1rem; font-weight: 700;
+  transition: box-shadow .25s, transform .25s;
+}
+.cta:hover { box-shadow: var(--brilho), 0 0 40px rgba(145, 70, 255, 0.35); transform: translateY(-2px); }
+
+/* Caixa 16:9 que se adapta à largura; o iframe preenche tudo */
+.player {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #070310;
+  border: 1px solid var(--borda);
+  display: grid; place-items: center;
+}
+.player iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.player-aviso { color: var(--texto-suave); font-size: 0.9rem; padding: 16px; text-align: center; }
+
+/* ============================================================
+   6. REDES SOCIAIS (grade de 2 colunas no celular, 3 no PC)
+============================================================ */
+.redes { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+
+.rede {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 4px; min-height: 84px; padding: 12px;
+  text-align: center; text-decoration: none; font-weight: 700;
+  color: var(--texto);
+  background: var(--vidro);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  backdrop-filter: blur(10px);
+  transition: border-color .25s, box-shadow .25s, transform .25s;
+}
+.rede i { font-size: 1.5rem; color: var(--lilas); }
+.rede small { font-weight: 400; font-size: 0.78rem; color: var(--texto-suave); }
+/* Brilho neon ao passar o mouse (ou tocar) */
+.rede:hover { border-color: var(--roxo); box-shadow: var(--brilho); transform: translateY(-3px); }
+
+/* ============================================================
+   7. SETUP & MIRA
+============================================================ */
+.dados { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 14px; }
+.dados div { background: rgba(0, 0, 0, 0.25); border-radius: 10px; padding: 10px; text-align: center; }
+.dados dt { font-size: 0.78rem; color: var(--texto-suave); }
+.dados dd { font-weight: 700; font-size: 1rem; }
+
+/* Caixa que mostra o código da mira */
+#codigo-mira {
+  display: block; padding: 12px; margin-bottom: 12px;
+  background: #070310; border: 1px dashed var(--roxo); border-radius: 10px;
+  color: var(--lilas); font-size: 0.85rem; word-break: break-all;
+}
+
+.btn-copiar {
+  width: 100%; padding: 13px;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  background: transparent; color: var(--texto);
+  border: 1.5px solid var(--roxo); border-radius: 10px;
+  font: 700 0.95rem 'DM Sans', sans-serif; cursor: pointer;
+  transition: background .25s, box-shadow .25s;
+}
+.btn-copiar:hover { background: rgba(145, 70, 255, 0.2); box-shadow: var(--brilho); }
+/* Estado "Copiado!" (classe adicionada pelo JavaScript) */
+.btn-copiar.copiado { background: var(--roxo); box-shadow: var(--brilho); }
+
+/* ============================================================
+   8. AGENDA
+============================================================ */
+.agenda ul { list-style: none; }
+.agenda li {
+  display: flex; justify-content: space-between; gap: 14px;
+  padding: 11px 0; border-bottom: 1px solid var(--borda);
+}
+.agenda li:last-child { border-bottom: 0; }
+.agenda span { color: var(--texto-suave); }
+
+/* ============================================================
+   9. RODAPÉ
+============================================================ */
+.rodape { text-align: center; font-size: 0.82rem; color: var(--texto-suave); padding-top: 8px; }
+
+/* ============================================================
+   10. TELA PRO PC (computador)
+============================================================ */
+@media (min-width: 600px) {
+  .redes { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 900px) {
+  .container {
+    max-width: 880px;            /* PC: mais largo ficando proporcional a tela */
+    padding: 64px 32px 40px;
+    gap: 28px;
+  }
+  .card { padding: 32px; }
+  .card h2 { font-size: 1.5rem; margin-bottom: 20px; }
+
+  .avatar { width: 160px; height: 160px; }
+  .perfil h1 { font-size: 2.6rem; }
+  .cta { padding: 20px; font-size: 1.3rem; }
+
+  .rede { min-height: 110px; }
+  .rede i { font-size: 2rem; }
+
+  .dados dd { font-size: 1.2rem; }
+  .dados dt { font-size: 0.9rem; }
+  #codigo-mira { font-size: 1rem; padding: 16px; }
+}
+
+/* Respeita quem desativa animações no sistema */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}

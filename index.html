@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!-- ============================================================
+  HUB DE LINKS – STREAMER DE VALORANT
+  Estrutura: Perfil > Destaque Twitch > Redes > Setup > Agenda > Rodapé
+  Procure por "EDITE AQUI" para achar tudo que você precisa trocar.
+============================================================ -->
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <!-- Faz o site se ajustar a telas de celular -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>aphrodite | Valorant na Twitch</title>
+  <meta name="description" content="Lives de Valorant, clipes e comunidade. Todos os meus links num só lugar.">
+
+  <!-- Fontes do Google (títulos e texto) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Ícones de redes sociais (Font Awesome via CDN) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Nosso CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+
+    <!-- ================= 1. CABEÇALHO / PERFIL ================= -->
+    <header class="perfil">
+      <img class="avatar" src="hanniquax.png" alt="Foto de perfil do streamer">
+      <h1> [aphrodite] </h1>
+      <!-- Badge de status (o ponto pulsa via CSS) -->
+      <span class="badge-live"><span class="ponto"></span>Live na Twitch</span>
+      <!-- EDITE asua bio -->
+      <p class="bio">Jogando Valorant ao vivo, com ranked, clutches e muita resenha. Entra na live e vem jogar comigo!</p>
+    </header>
+
+    <!-- ================= 2. DESTAQUE: TWITCH ================= -->
+    <section class="destaque card">
+      <!-- Botão principal (CTA). EDITE AQUI: [LINK DA TWITCH] -->
+      <a class="cta" href="https://www.twitch.tv/hanniquaxx" target="_blank" rel="noopener">
+        <i class="fa-brands fa-twitch"></i> Assistir ao vivo na Twitch
+      </a>
+
+      <!-- Container responsivo 16:9 do player -->
+           <!-- Container responsivo 16:9 do player -->
+      <div class="player">
+        <!--
+          PLAYER DA TWITCH
+          - channel: nome do seu canal (twitch.tv/hanniquaxx)
+          - parent: domínio onde o site está, SEM https://
+            Para vários domínios, repita o parent:
+            &parent=hannabx.github.io&parent=localhost
+          Sem o parent correto a Twitch bloqueia o player.
+        -->
+        <iframe
+          src="https://player.twitch.tv/?channel=hanniquaxx&parent=hannabx.github.io&parent=localhost&muted=true"
+          allowfullscreen
+          title="Player da Twitch">
+        </iframe>
+        <p class="player-aviso">O player da Twitch aparecerá aqui.</p>
+      </div>
+      </div>
+    </section>
+
+    <!-- ================= 3. REDES SOCIAIS ================= -->
+    <!-- Cada <a class="rede"> é um botão. Para adicionar/remover, copie ou apague uma linha. -->
+    <nav class="redes" aria-label="Redes sociais">
+      <a class="rede" href="https://www.twitch.tv/hanniquaxx" target="_blank" rel="noopener"><i class="fa-brands fa-twitch"></i> Livezinha</a>
+      <a class="rede" href="https://youtube.com/@hanniquax" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i> YouTube <small></small></a>
+      <a class="rede" href="https://tiktok.com/@yohannappx" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i> TikTok <small>Reels</small></a>
+      <a class="rede" href="https://instagram.com/bs_hanna" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i> Instagram</a>
+      <a class="rede" href="https://discord.gg/XfwZ463kc" target="_blank" rel="noopener"><i class="fa-brands fa-discord"></i> Discord <small>Convite Servidor</small></a>
+      <a class="rede" href="https://x.com/@kccgirlfriend" target="_blank" rel="noopener"><i class="fa-brands fa-x-twitter"></i> X (Twitter)</a>
+    </nav>
+
+    <!-- ================= 4. SETUP & MIRA ================= -->
+    <section class="setup card">
+      <h2>Meu setup e mira</h2>
+      <!-- Lista de dados. EDITE AQUI os valores. -->
+      <dl class="dados">
+        <div><dt>Sensibilidade</dt><dd>0.35</dd></div>
+        <div><dt>DPI</dt><dd>800</dd></div>
+        <div><dt>Resolução</dt><dd>1920x1080</dd></div>
+      </dl>
+
+      <!-- Código da mira: o JS copia o texto deste elemento (id="codigo-mira") -->
+      <!-- EDITE AQUI: cole o código da sua mira (Valorant > Configurações > Mira > Importar) -->
+      <code id="codigo-mira">0;P;h;0;f;0;0l;4;0o;2;0a;1;0f;0;1b;0</code>
+
+      <button id="btn-copiar" class="btn-copiar" type="button">
+        <i class="fa-regular fa-copy"></i> <span>Copiar código da mira</span>
+      </button>
+    </section>
+
+    <!-- ================= 5. AGENDA DE LIVES ================= -->
+    <section class="agenda card">
+      <h2>Agenda de lives</h2>
+      <!-- COLOQUE AQUI OS DIAS DE LIVE E HORÁRIOS -->
+      <ul>
+        <li><span>Segunda, quarta e sexta</span><strong>20h às 00h</strong></li>
+        <li><span>Sábado</span><strong>15h às 20h</strong></li>
+        <li><span>Domingo</span><strong>Folga</strong></li>
+      </ul>
+    </section>
+
+    <!-- ================= 6. RODAPÉ ================= -->
+    <footer class="rodape">
+      <!-- O ano é preenchido automaticamente pelo script.js -->
+      © <span id="ano"></span> hanniquax. Feito com ♥ para a comunidade.
+    </footer>
+  </main>
+
+  <!-- Nosso JavaScript (no fim para carregar depois do HTML) -->
+  <script src="script.js"></script>
+</body>
+</html>
